@@ -23,7 +23,7 @@ export default function Dropdown() {
     // create list item from array of cuisines
     let cuisineList = cuisines.map((cuisine, i)=> {
         // return  <li><a className="dropdown-item" href="#">{cuisine}</a></li>
-        return <DropdownItem text={cuisine} itemChanged={handleItemChange}></DropdownItem>
+        return <DropdownItem title={cuisine} itemChanged={handleItemChange}></DropdownItem>
     })
     console.log(cuisineList);
 
