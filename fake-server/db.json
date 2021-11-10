@@ -3,6 +3,16 @@
     {
       "title": "Angular",
       "summary": "client side framework",
+      "id": 1
+    },
+    {
+      "title": "React",
+      "summary": "client side lib",
+      "id": 2
+    },
+    {
+      "title": "JS",
+      "summary": "basic js",
       "id": 3
     }
   ]

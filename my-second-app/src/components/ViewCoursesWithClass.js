@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from './Card';
+import axios from 'axios';
 
 export default class ViewCoursesWithClass extends Component {
 
@@ -22,15 +23,26 @@ export default class ViewCoursesWithClass extends Component {
 
     componentDidMount() {
         console.log('cwd...')
-        fetch('http://localhost:8000/courses/')
-        .then(res=> res.json())
-        .then(data => {
-            console.log(data)
-            this.setState({courses: data});
+        // fetch('http://localhost:8000/courses/')
+        // .then(res=> res.json())
+        // .then(data => {
+        //     console.log(data)
+        //     this.setState({courses: data});
+        // })
+        // .catch(err=>console.log(err))
+
+        axios.get('http://localhost:8000/courses/')
+        .then( (response) => {
+          // handle success
+          console.log(response.status)
+          console.log(response.data);
+          this.setState({courses: response.data});
         })
-        .catch(err=>console.log(err))
-
-
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+     
         console.log('test fetch calling...')
     }
     

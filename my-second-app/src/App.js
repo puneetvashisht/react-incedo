@@ -20,7 +20,8 @@ function App() {
     {/* <AddCourse></AddCourse> */}
     {/* <ViewCourses></ViewCourses>
      */}
-     <ViewCoursesWithClass></ViewCoursesWithClass>
+     {/* <ViewCoursesWithClass></ViewCoursesWithClass> */}
+     <ViewCourses></ViewCourses>
      
     </div>
   );
