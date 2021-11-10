@@ -5,6 +5,7 @@ import Badge from './components/Badge';
 import BadgeWithClass from './components/BadgeWithClass';
 import Dropdown from './components/Dropdown';
 import ViewCourses from './components/ViewCourses';
+import ViewCoursesWithClass from './components/ViewCoursesWithClass';
 // import Quiz from './components/Quiz';
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
       <Dropdown></Dropdown>
       <hr/> */}
     {/* <AddCourse></AddCourse> */}
-    <ViewCourses></ViewCourses>
+    {/* <ViewCourses></ViewCourses>
+     */}
+     <ViewCoursesWithClass></ViewCoursesWithClass>
      
     </div>
   );

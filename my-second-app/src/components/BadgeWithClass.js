@@ -36,6 +36,7 @@ export default class BadgeWithClass extends Component {
 
 
 
+
 // functional component
 
 // import React from 'react'
