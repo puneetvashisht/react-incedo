@@ -2,10 +2,12 @@ export const ADD_COURSE = 'ADD_COURSE'
 export const DELETE_COURSE = 'DELETE_COURSE'
 export const FETCH_COURSES = 'FETCH_COURSES'
 
+const baseURL = 'http://localhost:8000/courses/'
+
 
 export const fetchCourses = () => {
     return (dispatch) => {
-        fetch('http://localhost:8000/courses/')
+        fetch(baseURL)
           .then(response => response.json()) 
           .then(json => {
               console.log(json);
@@ -20,7 +22,7 @@ export const addCourse = (course) => {
 
     // delayed dispatch available through thunk
     return (dispatch) => {
-        fetch('http://localhost:8000/courses/', {
+        fetch(baseURL, {
             method: "POST",
             body: JSON.stringify(course),
             headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -39,7 +41,7 @@ export const addCourse = (course) => {
 export const deleteCourse = (id) => {
 
     return (dispatch) => {
-        fetch('http://localhost:8000/courses/' + id, {
+        fetch(baseURL + id, {
         method: 'DELETE'
         })
         .then(res=> res.json())
