@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 import Card from './Card'
+import * as actions from '../actions/action'
 
 function ViewCourses(props) {
 
@@ -12,12 +13,15 @@ function ViewCourses(props) {
     // ])
 
 
- 
+    useEffect(() => {
+        props.onFetchCourses()
+       
+    }, [])
 
 
-    const handleDelete = (index)=>{
-        console.log('handle delete  in parent', index)
-
+    const handleDelete = (id)=>{
+        console.log('handle delete  in parent', id)
+        props.onCourseDeletion(id)
         // var newCourses = [ ...courses ]
         // // newCourses.splice(index, 1);
         // let courseDeleted = newCourses.splice(index, 1);
@@ -26,7 +30,7 @@ function ViewCourses(props) {
     }
 
     let listCourses = props.courses.map((course, i)=>{
-        return <Card key={course.id} idx={i} title={course.title} summary={course.summary} courseDeleted={handleDelete}></Card>
+        return <Card key={course.id} idx={course.id} title={course.title} summary={course.summary} courseDeleted={handleDelete}></Card>
     })
 
 
@@ -47,6 +51,13 @@ function ViewCourses(props) {
 //     // console.log(state);
 // }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCourseDeletion: (id) => dispatch(actions.deleteCourse(id)),
+        onFetchCourses: () => dispatch(actions.fetchCourses())
+    }
+}
+
 const mapStateToProps = (state) => {
     console.log(state);
 
@@ -55,4 +66,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ViewCourses) ;
+export default connect(mapStateToProps, mapDispatchToProps)(ViewCourses) ;

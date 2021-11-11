@@ -4,12 +4,21 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducer from './store/reducer'
 import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk'
 
 
-const store = createStore(reducer);
+const loggerMiddleware = storeAPI => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', storeAPI.getState())
+  return result
+}
+
+
+const store = createStore(reducer, applyMiddleware(loggerMiddleware, thunkMiddleware));
 
 
 ReactDOM.render(

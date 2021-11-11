@@ -6,14 +6,6 @@ function DisplayCourses(props) {
 
 
 
-    // const [courses, setCourses] = useState([
-    //     { id: 23, title: 'Angular', summary: 'Angular is from google.. its a framework' },
-    //     { id: 13, title: 'React', summary: 'React is from facebook.. its a library' },
-    //     { id: 3, title: 'Ember', summary: 'Ember is open-source.. its a framework' }
-    // ])
-
-
-
     const handleDelete = (index) => {
         console.log('handle delete  in parent', index)
 
