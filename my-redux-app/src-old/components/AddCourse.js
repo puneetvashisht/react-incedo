@@ -1,12 +1,8 @@
 import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
-import { saveCourse } from '../store/reducer'
-
-
+import { connect } from 'react-redux'
+import * as actions from '../actions/action'
 
 function AddCourse(props) {
-
-    const dispatch = useDispatch()
 
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
@@ -29,8 +25,7 @@ function AddCourse(props) {
 
         let course = {title, summary};
         console.log(course);
-        // props.onCourseAdd(course);
-        dispatch(saveCourse(course));
+        props.onCourseAdd(course);
         // add the course to the store
 
         // fetch call to make HTTP POST
@@ -64,15 +59,12 @@ function AddCourse(props) {
 }
 
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         onCourseAdd: (course) => dispatch(actions.addCourse(course))
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCourseAdd: (course) => dispatch(actions.addCourse(course))
+    }
+}
 
 
 
-// export default connect(null, mapDispatchToProps)(AddCourse) ;
-
-
-export default AddCourse;
+export default connect(null, mapDispatchToProps)(AddCourse) ;

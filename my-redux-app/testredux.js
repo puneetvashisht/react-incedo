@@ -21,6 +21,7 @@ const reducer = (state = initialState, action)=>{
         // modify the courses array to add another course object
         // no mutable changes
         // state.courses.push(action.payload);
+
         let newCourses =  [...state.courses, action.payload]
         return {courses: newCourses}
 

@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
-import {useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux';
 
-const courseState = (state) => {
-    return {
-        courses: state.courses
-    }
-}
 
 function DisplayCourses(props) {
 
-    const state = useSelector(courseState)
-    const dispatch = useDispatch();
+
 
     const handleDelete = (index) => {
         console.log('handle delete  in parent', index)
@@ -22,7 +16,7 @@ function DisplayCourses(props) {
         // setCourses(newCourses);
     }
 
-    let tableRows = state.courses.map((course, i) => {
+    let tableRows = props.courses.map((course, i) => {
         return (
             <tr>
                 <th scope="row">1</th>
@@ -59,14 +53,12 @@ function DisplayCourses(props) {
 }
 
 
-// const mapStateToProps = (state) => {
-//     console.log(state);
+const mapStateToProps = (state) => {
+    console.log(state);
 
-//     return {
-//         courses: state.courses
-//     }
-// }
+    return {
+        courses: state.courseReducer.courses
+    }
+}
 
-// export default connect(mapStateToProps)(DisplayCourses);
-
-export default DisplayCourses;
+export default connect(mapStateToProps)(DisplayCourses);

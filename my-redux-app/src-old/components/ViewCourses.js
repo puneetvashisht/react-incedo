@@ -1,21 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import Card from './Card'
-
-import { deleteCourse, fetchCourses } from '../store/reducer'
-
-
-const courseState = (state) => {
-    return {
-        courses: state.courses
-    }
-}
+import * as actions from '../actions/action'
 
 function ViewCourses(props) {
 
-    
-    const state = useSelector(courseState)
-   const dispatch = useDispatch();
 
     // const [courses, setCourses] = useState([
     //     {id: 23, title:'Angular', summary:'Angular is from google.. its a framework'},
@@ -25,16 +14,14 @@ function ViewCourses(props) {
 
 
     useEffect(() => {
-        // props.onFetchCourses()
-        dispatch(fetchCourses())
+        props.onFetchCourses()
        
     }, [])
 
 
     const handleDelete = (id)=>{
         console.log('handle delete  in parent', id)
-        dispatch(deleteCourse(id))
-        // props.onCourseDeletion(id)
+        props.onCourseDeletion(id)
         // var newCourses = [ ...courses ]
         // // newCourses.splice(index, 1);
         // let courseDeleted = newCourses.splice(index, 1);
@@ -42,7 +29,7 @@ function ViewCourses(props) {
         // setCourses(newCourses);
     }
 
-    let listCourses = state.courses.map((course, i)=>{
+    let listCourses = props.courses.map((course, i)=>{
         return <Card key={course.id} idx={course.id} title={course.title} summary={course.summary} courseDeleted={handleDelete}></Card>
     })
 
@@ -64,19 +51,19 @@ function ViewCourses(props) {
 //     // console.log(state);
 // }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         onCourseDeletion: (id) => dispatch(actions.deleteCourse(id)),
-//         onFetchCourses: () => dispatch(actions.fetchCourses())
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCourseDeletion: (id) => dispatch(actions.deleteCourse(id)),
+        onFetchCourses: () => dispatch(actions.fetchCourses())
+    }
+}
 
-// const mapStateToProps = (state) => {
-//     console.log(state);
+const mapStateToProps = (state) => {
+    console.log(state);
 
-//     return {
-//         courses: state.courses
-//     }
-// }
+    return {
+        courses: state.courseReducer.courses
+    }
+}
 
-export default ViewCourses;
+export default connect(mapStateToProps, mapDispatchToProps)(ViewCourses) ;

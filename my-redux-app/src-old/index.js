@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { applyMiddleware, createStore } from 'redux';
 import reducer from './store/reducer'
-
+import userReducer from './store/user-reducer'
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -24,7 +24,7 @@ const composedEnhancer = composeWithDevTools(
   applyMiddleware(loggerMiddleware, thunkMiddleware)
 )
 
-const store = createStore(reducer, composedEnhancer);
+const store = createStore(combineReducers({userReducer:userReducer, courseReducer:reducer}), composedEnhancer);
 
 
 ReactDOM.render(
