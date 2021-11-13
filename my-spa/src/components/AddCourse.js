@@ -1,9 +1,15 @@
 import React, {useState} from 'react'
-
+import {
+    useHistory
+  } from "react-router-dom";
 export default function AddCourse() {
+
+    
 
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
+
+    let history = useHistory();
 
     const handleTitleChange = ($event) => {
         // console.log($event.target.value)
@@ -30,7 +36,15 @@ export default function AddCourse() {
             headers: {"Content-type": "application/json; charset=UTF-8"}
           })
           .then(response => response.json()) 
-          .then(json => console.log(json))
+          .then(json => {
+              console.log(json)
+            //   if(condition1)
+              // navigate to view coureses path
+              history.push('/viewcourse/'+ json.id) 
+              // else if(condition 2)
+              // alert message
+          })
+
           .catch(err => console.log(err));
 
 

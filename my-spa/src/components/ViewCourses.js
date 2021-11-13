@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import AddCourse from './AddCourse'
 import Card from './Card'
+import {
+    useParams
+  } from "react-router-dom";
 
 export default function ViewCourses() {
+
+    let { id } = useParams();
 
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
@@ -76,6 +81,9 @@ export default function ViewCourses() {
 
     return (
         <div className="container ">
+            <div className="row">
+                <h2>Added a new course with id: {id}</h2>
+            </div>
             <div className="row">
 
                 
